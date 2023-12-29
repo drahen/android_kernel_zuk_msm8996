@@ -54,6 +54,7 @@ MODULE_PARM_DESC(sip_direct_media, "Expect Media streams between signalling "
 
 const struct nf_nat_sip_hooks *nf_nat_sip_hooks;
 EXPORT_SYMBOL_GPL(nf_nat_sip_hooks);
+static unsigned nf_ct_disable_sip_alg;
 
 static int string_len(const struct nf_conn *ct, const char *dptr,
 		      const char *limit, int *shift)
