@@ -91,10 +91,6 @@ static int dummycon_font_copy(struct vc_data *vc, int a)
     return 0;
 }
 
-static void con_bmove(struct vc_data *vc, int a, int b, int c, int d, int e, intf)
-{
-}
-
 static int con_set_palette(struct vc_data *vc, unsigned char *p)
 {
 	return 0;
@@ -104,6 +100,13 @@ static int con_scrolldelta(struct vc_data *vc, int x)
 {
 	return 0;
 }
+
+static int dummycon_dummy(void)
+{
+	return 0;
+}
+
+#define DUMMY   (void *)dummycon_dummy
 
 /*
  *  The console `switch' structure for the dummy console
@@ -115,7 +118,7 @@ const struct consw dummy_con = {
     .owner =		THIS_MODULE,
     .con_startup =	dummycon_startup,
     .con_init =		dummycon_init,
-    .con_bmove =	con_bmove,
+    .con_bmove =	DUMMY,
     .con_set_palette =	con_set_palette,
     .con_scrolldelta =	con_scrolldelta,
     .con_deinit =	dummycon_deinit,
